@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Square } from './Square'
 import './App.css'
 
-const board = [
+const boardGame = [
   [null, null, null],
   [null, null, null],
   [null, null, null],
@@ -15,9 +15,10 @@ const TURNS = {
 }
 
 function App() {
+  const [board, setBoard] = useState(boardGame)
   const [currentTurn, setCurrentTurn] = useState(TURNS.X)
 
-  // board [x][y]
+  // board[x][y]
   // board[0][0] => 1 square
   // board[0][1] => 2 square
 
@@ -25,19 +26,21 @@ function App() {
   const handleSquareClick = (row, col) => {
     if(board[row][col] !== null) return
     
-    let newBoard = [...board]
-    for(let i = 0; i < board.length; i++) {
+    let newBoard = [...boardGame]
+    for(let i = 0; i < newBoard.length; i++) {
       let newRow = newBoard[i]
-      for(let j = 0; j < board[i].length; j++) {
+      for(let j = 0; j < newBoard[i].length; j++) {
         if(i === row && j === col) {
           newRow[j] = currentTurn
         }
       }
-      newBoard.push(newRow)
+      newBoard[i] = newRow
     }
-
-    console.log(newBoard)
-    console.log(currentTurn)
+    
+    console.log('newboard', newBoard)
+    console.log('board', board)
+    console.log('currentTurn', currentTurn)
+    setBoard(newBoard)
     setCurrentTurn(currentTurn === TURNS.X ? TURNS.O : TURNS.X)
   }
 
