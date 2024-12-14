@@ -59,7 +59,7 @@ function App() {
     }
   }
   
-
+  // TODO - not working on horizontal and diagonal, review!
   const checkWinner = (board) => {
     // check all winning combinations
     for(let combination of WINNING_COMBINATIONS) {
@@ -69,6 +69,7 @@ function App() {
           board[a[0]][a[1]] === board[b[0]][b[1]] && 
           board[a[0]][a[1]] === board[c[0]][c[1]] 
       ) {
+        console.log('winner', board[a[0]][a[1]])
         return board[a[0]][a[1]] // X or O
       }
 
@@ -77,19 +78,32 @@ function App() {
   }
 
   return (
-    <>
-      {board.map((row, rowIndex) => (
-        <div key={rowIndex} className="board">
-          {row.map((cell, colIndex) => (
-            <Square
-              key={`${rowIndex}-${colIndex}`}
-              onClick={() => handleSquareClick(rowIndex, colIndex)}
-              value={cell}
-            />
-          ))}
-        </div>
-      ))}
-    </>
+    <main>
+      <h1>Tic Tac Toe</h1>
+      <section className="game">
+        {board.map((row, rowIndex) => (
+          <div key={rowIndex} className="board">
+            {row.map((cell, colIndex) => (
+              <Square
+                key={`${rowIndex}-${colIndex}`}
+                onClick={() => handleSquareClick(rowIndex, colIndex)}
+              >
+                {cell}
+              </Square>
+            ))}
+          </div>
+        ))}
+      </section>
+
+      <section className='turn'>
+        <Square isSelected={currentTurn === TURNS.X}>
+          {TURNS.X}
+        </Square>
+        <Square isSelected={currentTurn === TURNS.O}>
+          {TURNS.O}
+        </Square>
+      </section>
+    </main>
   )
 }
 

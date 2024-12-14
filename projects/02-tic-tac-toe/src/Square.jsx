@@ -1,15 +1,16 @@
 // import { useState } from "react"
 import PropTypes from 'prop-types';
 
-export const  Square = ({ onClick, value }) => {
+export const  Square = ({ onClick, children, isSelected }) => {
+
 
   return (
     <>
       <div 
-        className='board__square'
+        className={`square ${isSelected ? '-is-selected' : null}`}
         onClick={onClick} 
       >
-        {value}
+        {children}
       </div>
     </>
   )
@@ -17,5 +18,6 @@ export const  Square = ({ onClick, value }) => {
 
 Square.propTypes = {
   onClick: PropTypes.func,
-  value: PropTypes.string,
+  children: PropTypes.string,
+  isSelected: PropTypes.bool
 }
