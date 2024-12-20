@@ -1,4 +1,4 @@
-import { TwitterCard } from "./TwitterCard";
+import { TwitterCard } from './TwitterCard'
 
 const users = [
   {
@@ -23,11 +23,11 @@ const users = [
   }
 ]
 
-export default function App() {
+export default function App () {
   return (
-    <section className="App">
+    <section className='App'>
       {users.map(({ userName, name, isFollowing }) => {
-        return(
+        return (
           <TwitterCard
             key={userName}
             userName={userName}

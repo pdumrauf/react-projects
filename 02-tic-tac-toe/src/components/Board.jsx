@@ -1,11 +1,11 @@
-import PropTypes from 'prop-types';
-import { Square } from "./Square"
+import PropTypes from 'prop-types'
+import { Square } from './Square'
 
-export function Board({board, handleSquareClick}) {
+export function Board ({ board, handleSquareClick }) {
   return (
-    <section className="game">
+    <section className='game'>
       {board.map((row, rowIndex) => (
-        <div key={rowIndex} className="board">
+        <div key={rowIndex} className='board'>
           {row.map((cell, colIndex) => (
             <Square
               key={`${rowIndex}-${colIndex}`}
@@ -22,5 +22,5 @@ export function Board({board, handleSquareClick}) {
 
 Board.propTypes = {
   board: PropTypes.array,
-  handleSquareClick: PropTypes.func,
+  handleSquareClick: PropTypes.func
 }

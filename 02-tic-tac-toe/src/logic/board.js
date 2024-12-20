@@ -1,7 +1,7 @@
-import { WINNING_COMBINATIONS } from "../constants"
+import { WINNING_COMBINATIONS } from '../constants'
 
 export const checkWinner = (board) => {
-  for(let combination of WINNING_COMBINATIONS) {
+  for (const combination of WINNING_COMBINATIONS) {
     const [a, b, c] = combination
 
     const valueA = board[a[0]][a[1]]
@@ -9,7 +9,7 @@ export const checkWinner = (board) => {
     const valueC = board[c[0]][c[1]]
 
     if (valueA && valueA === valueB && valueA === valueC) {
-      return valueA; // return 'X' or 'O'
+      return valueA // return 'X' or 'O'
     }
   }
   return null

@@ -13,11 +13,11 @@ import './App.css'
 const boardGame = [
   [null, null, null],
   [null, null, null],
-  [null, null, null],
+  [null, null, null]
 ]
 
-function App() {
-  const [board, setBoard] = useState(()=> {
+function App () {
+  const [board, setBoard] = useState(() => {
     const boardFromStorage = window.localStorage.getItem('board')
     return boardFromStorage ? JSON.parse(boardFromStorage) : boardGame
   })
@@ -34,16 +34,16 @@ function App() {
     setBoard(newBoard)
 
     // change turn
-    const newTurn= currentTurn === TURNS.X ? TURNS.O : TURNS.X
+    const newTurn = currentTurn === TURNS.X ? TURNS.O : TURNS.X
     setCurrentTurn(newTurn)
-    saveGameStorage({board: newBoard, turn: newTurn})
-  
+    saveGameStorage({ board: newBoard, turn: newTurn })
+
     //  check winner
     const newWinner = checkWinner(newBoard)
     if (newWinner) {
       confetti()
-      setWinner(newWinner);
-    } else if(checkEndGame(newBoard)) {
+      setWinner(newWinner)
+    } else if (checkEndGame(newBoard)) {
       setWinner(false)
     }
   }
@@ -60,9 +60,9 @@ function App() {
     <main>
       <h1>Tic Tac Toe</h1>
       <button onClick={resetGame}>Reset game</button>
-      <Board board={board} handleSquareClick={handleSquareClick}/>
-      <Turns currentTurn={currentTurn}/>
-      <WinnerModal winner={winner} resetGame={resetGame}/>
+      <Board board={board} handleSquareClick={handleSquareClick} />
+      <Turns currentTurn={currentTurn} />
+      <WinnerModal winner={winner} resetGame={resetGame} />
     </main>
   )
 }

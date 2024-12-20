@@ -1,11 +1,11 @@
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 
-export const  Square = ({ onClick, children, isSelected }) => {
+export const Square = ({ onClick, children, isSelected }) => {
   return (
     <>
-      <div 
+      <div
         className={`square ${isSelected ? '-is-selected' : null}`}
-        onClick={onClick} 
+        onClick={onClick}
       >
         {children}
       </div>
