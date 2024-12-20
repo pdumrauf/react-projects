@@ -1,9 +1,6 @@
-// import { useState } from "react"
 import PropTypes from 'prop-types';
 
 export const  Square = ({ onClick, children, isSelected }) => {
-
-
   return (
     <>
       <div 
