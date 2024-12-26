@@ -1,0 +1,15 @@
+main {
+  place-items: center;
+}
+
+section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+section img {
+  max-width: 500px;
+  height: auto;
+}
