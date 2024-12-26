@@ -1,39 +1,33 @@
 import { useState, useEffect } from 'react'
 import './App.css'
-
-const CATS_FACTS_ENDPOINT = 'https://catfact.ninja/fact'
-
+import { getRandomFact, getRandomImage } from './services/logic'
 export function App () {
   const [fact, setFact] = useState()
   const [imageUrl, setImageUrl] = useState()
 
   useEffect(() => {
-    fetch(CATS_FACTS_ENDPOINT)
-      .then(res => res.json())
-      .then(data => {
-        const { fact } = data
-        setFact(fact)
-      })
+    getRandomFact()
+      .then(newFact => setFact(newFact))
   }, [])
 
   useEffect(() => {
     if (!fact) return
-
     const firstWord = fact.split(' ')[0]
-    const CAT_IMAGE_ENPOINT = `https://cataas.com/cat/says/${firstWord}?fontSize=50&fontColor=white`
 
-    fetch(CAT_IMAGE_ENPOINT)
-      .then(response => {
-        setImageUrl(response.url)
-      })
+    getRandomImage(firstWord).then(url => setImageUrl(url))
   }, [fact])
 
+  const handleClick = () => {
+    getRandomFact()
+      .then(newFact => setFact(newFact))
+  }
   return (
     <main>
       <h1>Cats app</h1>
+      <button onClick={handleClick}>Get random cat</button>
       <section>
         {fact && <p>{fact}</p>}
-        {imageUrl && <img src={imageUrl} alt={`Image comming from the first word of ${fact}`} />}
+        {imageUrl && <img src={imageUrl} alt={`Image extracted from the first word of ${fact}`} />}
       </section>
     </main>
   )
