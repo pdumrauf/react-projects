@@ -1,26 +1,15 @@
-import { useState, useEffect } from 'react'
 import './App.css'
-import { getRandomFact, getRandomImage } from './services/logic'
+import { useCatImage } from './hooks/useCatImage'
+import { useCatFact } from './hooks/useCatFact'
+
 export function App () {
-  const [fact, setFact] = useState()
-  const [imageUrl, setImageUrl] = useState()
-
-  useEffect(() => {
-    getRandomFact()
-      .then(newFact => setFact(newFact))
-  }, [])
-
-  useEffect(() => {
-    if (!fact) return
-    const firstWord = fact.split(' ')[0]
-
-    getRandomImage(firstWord).then(url => setImageUrl(url))
-  }, [fact])
+  const { fact, refreshFact } = useCatFact()
+  const { imageUrl } = useCatImage({ fact })
 
   const handleClick = () => {
-    getRandomFact()
-      .then(newFact => setFact(newFact))
+    refreshFact()
   }
+
   return (
     <main>
       <h1>Cats app</h1>
