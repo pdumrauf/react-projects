@@ -3,13 +3,21 @@ import { getRandomImage } from '../services/apiLogic'
 
 export function useCatImage ({ fact }) {
   const [imageUrl, setImageUrl] = useState()
+  const [errorImg, setErrorImg] = useState()
 
-  useEffect(() => {
-    if (!fact) return
-    const firstWord = fact.split(' ')[0]
+  const refreshImage = async () => {
+    try {
+      if (!fact) return
+      const firstWord = fact.split(' ')[0]
 
-    getRandomImage(firstWord).then(url => setImageUrl(url))
-  }, [fact])
+      const newImageUrl = await getRandomImage(firstWord)
+      setImageUrl(newImageUrl)
+    } catch (err) {
+      setErrorImg(err.message)
+    }
+  }
 
-  return { imageUrl }
+  useEffect(() => { refreshImage() }, [fact])
+
+  return { imageUrl, errorImg }
 }

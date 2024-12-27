@@ -3,8 +3,8 @@ import { useCatImage } from './hooks/useCatImage'
 import { useCatFact } from './hooks/useCatFact'
 
 export function App () {
-  const { fact, refreshFact } = useCatFact()
-  const { imageUrl } = useCatImage({ fact })
+  const { fact, errorFact, refreshFact } = useCatFact()
+  const { imageUrl, errorImg } = useCatImage({ fact })
 
   const handleClick = () => {
     refreshFact()
@@ -18,6 +18,8 @@ export function App () {
         {fact && <p>{fact}</p>}
         {imageUrl && <img src={imageUrl} alt={`Image extracted from the first word of ${fact}`} />}
       </section>
+      {errorFact && <p>{errorFact}</p>}
+      {errorImg && <p>{errorImg}</p>}
     </main>
   )
 }
