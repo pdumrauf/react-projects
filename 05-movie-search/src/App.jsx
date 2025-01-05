@@ -1,19 +1,35 @@
 import './App.css'
-import withResults from './mocks/with-results.json'
-// import withoutResults from '../mocks/no-results.json'
 import { Movies } from './components/Movies'
+import { useMovies } from './hooks/useMovies'
+import { useSearch } from './hooks/useSearch'
 
 function App() {
-  const movies = withResults.Search
+  const { movies } = useMovies()
+  const { search, handleChange, error } = useSearch()
+
+  function handleSubmit (event) {
+    event.preventDefault()
+    console.log(search)
+  }
 
   return (
     <>
       <header>
         <h1>Movie Search</h1>
-        <form className='form'>
-          <input placeholder='Star Wars, Harry Potter...'></input>
+        <form className='form' onSubmit={handleSubmit}>
+          <input 
+            style={{ 
+              border: '1px solid transparent', 
+              borderColor: error ? 'red' : 'transparent'
+            }} 
+            onChange={handleChange} 
+            value={search} 
+            name="search" 
+            placeholder='Star Wars, Harry Potter...'>
+          </input>
           <button type='submit'>Search</button>
         </form>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
       </header>
 
       <main>

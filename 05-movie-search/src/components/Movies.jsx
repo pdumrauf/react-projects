@@ -1,14 +1,15 @@
 /* eslint react/prop-types: 0 */
 
 function ListOfMovies ({ movies }) {
+  
   return (
     <ul>
       {
         movies.map(movie => (
-          <li key={movie.imdbID}>
-            <h3>{movie.Title}</h3>
-            <p>{movie.Year}</p>
-            <img src={movie.Poster} alt={movie.Title} />
+          <li key={movie.id}>
+            <h3>{movie.title}</h3>
+            <p>{movie.year}</p>
+            <img src={movie.poster} alt={movie.title} />
           </li>
         ))
       }
