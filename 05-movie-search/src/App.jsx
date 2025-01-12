@@ -9,13 +9,13 @@ function App() {
 
    function handleSubmit (event) {
     event.preventDefault()
-    getMovies(search)
+    getMovies({ search })
   }
 
   return (
     <>
       <header>
-        <h1>Movie Search</h1>
+        <h1>Movie  </h1>
         <form className='form' onSubmit={handleSubmit}>
           <input 
             style={{ 
