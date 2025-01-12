@@ -5,18 +5,14 @@ export function useSearch () {
   const [error, setError] = useState(null)
   const isFirstInput = useRef(true)
 
-  function handleChange (event) {
-    const newSearch = event.target.value
-    if(newSearch.startsWith(' ')) {
-      setError('You must enter a valid search term')
-      return
-    }
-    setSearch(newSearch)
-  }
-
   useEffect(() => {
     if(isFirstInput.current) {
       isFirstInput.current = search === ''
+      return
+    }
+
+    if(search.startsWith(' ')) {
+      setError('You must enter a valid search term')
       return
     }
 
@@ -33,5 +29,5 @@ export function useSearch () {
     setError(null)
   }, [search])
 
-  return { search, handleChange, error }	
+  return { search, setSearch, error }	
 }
