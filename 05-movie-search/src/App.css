@@ -14,4 +14,28 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  width: 100%;
+}
+
+.movies {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  width: 100%;
+  gap: 32px;
+  list-style: none;
+  margin-top: 50px;
+  padding: 0;
+}
+
+.movie {
+  place-items: center;
+}
+
+.movie h3, .movie p {
+  text-align: center;
+  margin: 0;
+}
+
+.movie img {
+  margin-top: 16px;
 }

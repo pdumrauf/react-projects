@@ -4,12 +4,12 @@ import { useMovies } from './hooks/useMovies'
 import { useSearch } from './hooks/useSearch'
 
 function App() {
-  const { movies } = useMovies()
   const { search, handleChange, error } = useSearch()
+  const { movies, getMovies, loading } = useMovies({ search })
 
-  function handleSubmit (event) {
+   function handleSubmit (event) {
     event.preventDefault()
-    console.log(search)
+    getMovies(search)
   }
 
   return (
@@ -33,7 +33,9 @@ function App() {
       </header>
 
       <main>
-        <Movies movies={movies} />
+        {
+          loading ? <p>Loading...</p> : <Movies movies={movies} />
+        }
       </main>
     </>
   )
