@@ -2,7 +2,6 @@
 
 export async function searchProduct () {
   try {
-
     const response = await fetch('https://dummyjson.com/products')
     const json = await response.json()
   
