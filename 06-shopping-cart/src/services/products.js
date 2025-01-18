@@ -7,12 +7,13 @@ export async function searchProduct () {
   
     const products = json.products
   
-    return products.map(product => ({
-      id: product.id,
-      title: product.title,
-      description: product.description,
-      image: product.thumbnail,
-      price: product.price
+    return products.map(({ id, title, description, thumbnail, price, category }) => ({
+      id,
+      title,
+      description,
+      image: thumbnail,
+      price,
+      category,
     }))
   } catch (error) {
     throw new Error(`${error} - Error fetching a product`)
