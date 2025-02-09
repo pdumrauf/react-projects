@@ -1,5 +1,5 @@
 /* eslint react/prop-types: 0 */
-export function CartItem({ title, image, price, quantity, addToCart }) {
+export function CartItem({ title, image, price, quantity, addToCart, decreaseItemQty }) {
 
   return (
     <li>
@@ -12,6 +12,7 @@ export function CartItem({ title, image, price, quantity, addToCart }) {
         <small>Qty: {quantity}</small>
       </footer>
       <button onClick={addToCart}>+</button>
+      <button onClick={decreaseItemQty}>-</button>
     </li>
   )
 }

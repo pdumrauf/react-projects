@@ -6,7 +6,7 @@ import { CartItem } from "./CartItem"
 
 export function Cart() {
   const cartId = useId()
-  const { cart, clearCart, addToCart } = useCart()
+  const { cart, clearCart, addToCart, decreaseItemQty } = useCart()
 
   return (
     <>
@@ -19,7 +19,10 @@ export function Cart() {
           {
             cart.map(product => {
               return (
-                <CartItem key={product.id} {...product} addToCart={() => addToCart(product)} />
+                <CartItem key={product.id} {...product}
+                  addToCart={() => addToCart(product)}
+                  decreaseItemQty={() => decreaseItemQty(product)}
+                />
               )
             })
           }
