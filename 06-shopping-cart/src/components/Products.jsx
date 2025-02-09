@@ -15,7 +15,6 @@ export function Products({ products }) {
       <ul>
         {products.map(product => {
           const isProductInCart = checkProductInCart(product)
-          console.log(isProductInCart)
           return (
             <li key={product.id}>
               <img
